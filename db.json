@@ -1,0 +1,50 @@
+{
+  "GHFlusão": {
+    "Cliente": {
+      "keys": [
+        "ID",
+        "Nome",
+        "Idade",
+        "CPF"
+      ],
+      "data": [
+        {
+          "ID": "1",
+          "Nome": "Rafael",
+          "Idade": "24",
+          "CPF": "23447847"
+        },
+        {
+          "ID": "2",
+          "Nome": "Douglas",
+          "Idade": "18",
+          "CPF": "11111111111"
+        }
+      ]
+    },
+    "Produto": {
+      "keys": [
+        "Código",
+        "Nome",
+        "Quantidade"
+      ],
+      "data": [
+        {
+          "Código": "1",
+          "Nome": "Arroz",
+          "Quantidade": "5"
+        }
+      ]
+    }
+  },
+  "Lista": {
+    "Produto": {
+      "keys": [
+        "Código",
+        "Nome",
+        "Vencimento"
+      ],
+      "data": []
+    }
+  }
+}

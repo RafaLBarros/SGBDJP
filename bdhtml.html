@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGBD Simples</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Gerenciador de Banco de Dados</h2>
+        <label for="dbName">Nome do Banco de Dados:</label>
+        <input type="text" id="dbName" placeholder="Digite o nome">
+        <button onclick="createDatabase()">Criar Banco</button>
+        
+        <h3>Bancos Criados</h3>
+        <ul id="dbList"></ul>
+    </div>
+    
+    <script src="/script.js"></script>
+</body>
+</html>
