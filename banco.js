@@ -9,7 +9,9 @@ function getDatabaseName() {
 document.addEventListener("DOMContentLoaded", function () {
     let dbName = getDatabaseName();
     if (dbName) {
-        document.getElementById('dbTitle').textContent = `Banco: ${dbName}`;
+        console.log(dbName)
+        document.getElementById('dbTitle').textContent = `${dbName}`;
+        document.getElementById('dbTitleHeader').textContent = `Banco: ${dbName}`;
         updateTableList(dbName);  // Carregar as tabelas do banco
     } else {
         document.getElementById('dbTitle').textContent = "Banco não encontrado";
@@ -97,53 +99,6 @@ function insertData() {
         }
     })
     .catch(error => console.error('Erro ao inserir dados:', error));
-}
-
-// Gerar campos de inserção de dados com base nas colunas da tabela
-function loadTableFields() {
-    fetch(`/get-table-keys?dbName=${encodeURIComponent(getDatabaseName())}&tableName=${encodeURIComponent(getTableName())}`)
-    .then(response => response.json())
-    .then(data => {
-        let form = document.getElementById('insertDataForm');
-        form.innerHTML = ''; // Limpa o formulário
-
-        data.keys.forEach(key => {
-            let label = document.createElement('label');
-            label.textContent = key;
-            let input = document.createElement('input');
-            input.type = 'text';
-            input.id = key;
-            form.appendChild(label);
-            form.appendChild(input);
-        });
-
-        let button = document.createElement('button');
-        button.textContent = 'Inserir';
-        button.onclick = insertData;
-        form.appendChild(button);
-    })
-    .catch(error => console.error('Erro ao carregar chaves da tabela:', error));
-}
-
-// Captura o nome da tabela da URL
-function getTableName() {
-    let pathParts = window.location.pathname.split('/');
-    return decodeURIComponent(pathParts[4]); // Pega o nome da tabela
-}
-
-// Atualiza o título da página da tabela
-document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname.includes('/tabela/')) {
-        let tableName = getTableName();
-        document.getElementById('tableTitle').textContent = `Tabela: ${tableName}`;
-        loadTableFields();
-        updateTableView();
-    }
-});
-
-// Voltar para a página do banco
-function voltarParaBanco() {
-    window.location.href = `/banco/${encodeURIComponent(getDatabaseName())}`;
 }
 
 // Atualizar a exibição dos dados na tabela

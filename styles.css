@@ -1,3 +1,193 @@
-body { font-family: Arial, sans-serif; text-align: center; }
-.container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; }
-.hidden { display: none; }
+/* Centralizar todo o conteúdo da página */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Usar toda a altura da janela */
+    margin: 0;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+}
+
+/* Container principal que agrupa os formulários */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Limitar a largura */
+    margin: 10px;
+}
+
+/* Estilo para os inputs padrão */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], input[type="tel"] {
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%; /* Faz o input ocupar 100% da largura disponível */
+    box-sizing: border-box; /* Garante que o padding não ultrapasse o tamanho do elemento */
+    transition: border 0.3s ease; /* Efeito de transição na borda */
+}
+/* Estilo para os inputs quando em foco */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="tel"]:focus {
+    border-color: #4CAF50; /* Cor da borda quando o campo está em foco */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Estilo para links */
+a {
+    color: #4CAF50;
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Efeito de transição na cor */
+}
+
+a:hover {
+    color: #45a049; /* Cor do link ao passar o mouse */
+}
+
+/* Títulos e labels */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left; /* Alinha o label à esquerda */
+}
+
+/* Estilo para os formulários padrão */
+form {
+    display: flex;
+    flex-direction: column;  /* Alinha os campos um abaixo do outro */
+    align-items: center;     /* Centraliza os campos */
+    max-width: 500px;        /* Limita a largura do formulário */
+    margin: 0 auto;          /* Centraliza o formulário na tela */
+    padding: 20px;           /* Adiciona espaçamento interno */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    border-radius: 8px;      /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+
+form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049; /* Muda a cor quando o botão é hover */
+}
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilo de títulos */
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Estilo para o formulário */
+#formFields {
+    display: flex;
+    flex-direction: column;  /* Alinha os campos um abaixo do outro */
+    align-items: center;     /* Centraliza os campos */
+    max-width: 500px;        /* Limita a largura do formulário */
+    margin: 0 auto;          /* Centraliza o formulário na tela */
+    padding: 20px;           /* Adiciona espaçamento interno */
+}
+
+/* Estilo para cada grupo de campo (label + input) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;              /* Faz os campos ocuparem 100% da largura disponível */
+    margin-bottom: 15px;      /* Adiciona espaçamento entre os campos */
+}
+
+/* Estilo para os inputs */
+.form-input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;              /* Faz o input ocupar 100% da largura disponível */
+}
+
+/* Estilo para o botão de submit */
+button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;              /* Faz o botão ocupar toda a largura disponível */
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para as mensagens de alerta de erro ou sucesso */
+.alert {
+    padding: 15px;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+
+.alert-error {
+    background-color: #f44336;
+}

@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1 id="dbTitle">Banco: </h1>
+    <div class="container">
+        <h1 id="dbTitleHeader">Banco: </h1>
 
-    <h2>Criar Nova Tabela</h2>
-    <input type="text" id="tableName" placeholder="Nome da Tabela">
-    <input type="text" id="tableKeys" placeholder="Chaves separadas por vírgula (ex: ID, Nome, Idade)">
-    <button onclick="createTable()">Criar Tabela</button>
+        <h2>Criar Nova Tabela</h2>
+        <input type="text" id="tableName" placeholder="Nome da Tabela">
+        <input type="text" id="tableKeys" placeholder="Chaves separadas por vírgula (ex: ID, Nome, Idade)">
+        <button onclick="createTable()">Criar Tabela</button>
 
-    <h2>Tabelas</h2>
-    <ul id="tableList"></ul>
+        <h2>Tabelas</h2>
+        <ul id="tableList"></ul>
 
-    <br>
-    <button onclick="voltar()">Voltar</button>
+        <br>
+        <button onclick="voltar()">Voltar</button>
+    </div>
 </body>
 </html>
