@@ -10,6 +10,7 @@ function getTableInfo() {
 document.addEventListener("DOMContentLoaded", function () {
     console.log("DOM totalmente carregado!");
     let { dbName, tableName } = getTableInfo();
+    console.log("Tabela: ", tableName); // Verifique se tableName está correto
     document.getElementById('tableTitle').textContent = `Tabela: ${tableName}`;
 
     // Carregar dados da tabela
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 // Atualiza os campos do formulário de inserção
                 updateTableHeader(data.keys);
-                updateTableBody(data.rows);  // Atualizado para data.rows ao invés de data.data
+                updateTableBody(data.rows);
                 updateFormFields(data.keys);
             } else {
                 alert(data.message);  // Exibe o erro de tabela não encontrada
@@ -35,7 +36,7 @@ function updateTableHeader(keys) {
     header.innerHTML = '';
     keys.forEach(key => {
         let th = document.createElement('th');
-        th.textContent = key;
+        th.textContent = key.name;
         header.appendChild(th);
     });
 }
@@ -63,13 +64,34 @@ function updateFormFields(keys) {
 
     keys.forEach(key => {
         let label = document.createElement('label');
-        label.textContent = key;
+        label.textContent = key.name;
         let input = document.createElement('input');
         input.type = 'text';
-        input.name = key;
+        input.name = key.name;
+        input.dataset.type = key.type;  // Armazena o tipo do campo
         formFields.appendChild(label);
         formFields.appendChild(input);
     });
+}
+
+// Função para validar os tipos dos dados inseridos
+function validateData(data, keys) {
+    for (let key of keys) {
+        let value = data[key.name];
+        let type = key.type;
+
+        if (type === 'number' && isNaN(value)) {
+            alert(`O campo ${key.name} deve ser um número.`);
+            return false;
+        } else if (type === 'boolean' && value !== 'true' && value !== 'false') {
+            alert(`O campo ${key.name} deve ser um valor booleano (true ou false).`);
+            return false;
+        } else if (type === 'text' && typeof value !== 'string') {
+            alert(`O campo ${key.name} deve ser um texto.`);
+            return false;
+        }
+    }
+    return true;
 }
 
 // Inserir dados na tabela
@@ -84,21 +106,27 @@ document.getElementById('insertDataForm').addEventListener('submit', function (e
         data[key] = value;
     });
 
-    fetch('/insert-data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ dbName, tableName, data })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Dados inseridos com sucesso!');
-            updateTableBody(data.table); // Atualiza a tabela com os dados inseridos
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(error => console.error('Erro ao inserir dados:', error));
+    fetch(`/get-table-data?dbName=${dbName}&tableName=${tableName}`)
+        .then(response => response.json())
+        .then(tableData => {
+            if (validateData(data, tableData.keys)) {
+                fetch('/insert-data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ dbName, tableName, data })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Dados inseridos com sucesso!');
+                        updateTableBody(data.table); // Atualiza a tabela com os dados inseridos
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Erro ao inserir dados:', error));
+            }
+        });
 });
 
 // Voltar para a página do banco
