@@ -80,7 +80,10 @@ http.createServer((req, res) => {
             if (databases[normalizedDBName]) {
                 if (!databases[normalizedDBName][normalizedTableName]) {
                     // Criamos a tabela com as chaves definidas
-                    databases[normalizedDBName][normalizedTableName] = { keys, data: [] };
+                    databases[normalizedDBName][normalizedTableName] = {
+                        keys: keys.map(key => ({ name: key.key, type: key.type })), // Armazena tipo também
+                        data: []
+                    };
                     saveDatabases(databases);
     
                     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -121,16 +124,27 @@ http.createServer((req, res) => {
             let { dbName, tableName, data } = JSON.parse(body);
             let normalizedDBName = decodeURIComponent(dbName);
             let normalizedTableName = decodeURIComponent(tableName);
+
             if (databases[normalizedDBName] && databases[normalizedDBName][normalizedTableName]) {
                 let table = databases[normalizedDBName][normalizedTableName];
                 console.log('Dados recebidos para inserção:', data);
-                // Criar um novo objeto de dados baseado nas chaves
-                let newRow = {};
-                table.keys.forEach(key => {
-                    newRow[key] = data[key] || ''; // Garantir que todas as chaves existam
-                });
+                
+                // Validar os tipos antes de salvar os dados
+                let validatedData = {};
+                Object.keys(data).forEach(key => {
+                    let keyType = table.keys.find(k => k.name === key).type;
     
-                table.data.push(newRow);
+                    // Valida o tipo de dado de acordo com o tipo especificado na chave
+                    if (keyType === 'number') {
+                        validatedData[key] = Number(data[key]);  // Converte para número
+                    } else if (keyType === 'boolean') {
+                        validatedData[key] = (data[key] === 'true');  // Converte para booleano
+                    } else if (keyType === 'text') {
+                        validatedData[key] = String(data[key]);  // Converte para texto
+                    }
+                });
+
+                table.data.push(validatedData);
                 saveDatabases(databases);
     
                 res.writeHead(200, { 'Content-Type': 'application/json' });

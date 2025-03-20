@@ -27,18 +27,29 @@ function voltar() {
 function createTable() {
     let tableName = document.getElementById('tableName').value;
     let keysInput = document.getElementById('tableKeys').value;
+    let typesInput = document.getElementById('tableTypes').value;
 
-    if (!tableName || !keysInput) {
-        alert('Nome da tabela e chaves são obrigatórios!');
+    if (!tableName || !keysInput || !typesInput) {
+        alert('Nome da tabela, chaves e tipos são obrigatórios!');
         return;
     }
 
     let keys = keysInput.split(',').map(key => key.trim()); // Transforma em array
+    let types = typesInput.split(',').map(type => type.trim());
+
+    // Verifica se a quantidade de tipos bate com a quantidade de chaves
+    if (keys.length !== types.length) {
+        alert('O número de tipos não corresponde ao número de chaves!');
+        return;
+    }
+
+    // Associa tipos às chaves
+    let keyTypes = keys.map((key, index) => ({ key, type: types[index] }));
 
     fetch('/create-table', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ dbName: getDatabaseName(), tableName, keys })
+        body: JSON.stringify({ dbName: getDatabaseName(), tableName, keys: keyTypes })
     })
     .then(response => response.json())
     .then(data => {
