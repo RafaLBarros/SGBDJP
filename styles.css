@@ -6,7 +6,12 @@ body {
     align-items: center;
     height: 100vh; /* Usar toda a altura da janela */
     margin: 0;
-    background-color: #f4f4f4; /* Cor de fundo suave */
+    background-color: #121212; /* Cor de fundo suave */
+    color: #F8F9FA;
+    background:linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)),url(/img/nebula.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 }
 
 /* Container principal que agrupa os formulários */
@@ -15,7 +20,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: rgba(18, 18, 18, 0.8);
+    color: #F8F9FA;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -34,23 +40,27 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     width: 100%; /* Faz o input ocupar 100% da largura disponível */
     box-sizing: border-box; /* Garante que o padding não ultrapasse o tamanho do elemento */
     transition: border 0.3s ease; /* Efeito de transição na borda */
+    background-color:rgba(0,0,0,0.3);
+    color: #F8F9FA;
 }
 /* Estilo para os inputs quando em foco */
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="tel"]:focus {
-    border-color: #4CAF50; /* Cor da borda quando o campo está em foco */
+    border-color: #0DCAF0; /* Cor da borda quando o campo está em foco */
     outline: none; /* Remove o contorno padrão */
+    color: #F8F9FA;
+    
 }
 
 /* Estilo para links */
 a {
-    color: #4CAF50;
+    color: #0DCAF0;
     text-decoration: none; /* Remove o sublinhado */
     font-weight: bold;
     transition: color 0.3s ease; /* Efeito de transição na cor */
 }
 
 a:hover {
-    color: #45a049; /* Cor do link ao passar o mouse */
+    color: #925FFF; /* Cor do link ao passar o mouse */
 }
 
 /* Títulos e labels */
@@ -69,7 +79,8 @@ form {
     max-width: 500px;        /* Limita a largura do formulário */
     margin: 0 auto;          /* Centraliza o formulário na tela */
     padding: 20px;           /* Adiciona espaçamento interno */
-    background-color: #f9f9f9; /* Cor de fundo suave */
+    background-color: #1A1A1A; /* Cor de fundo suave */
+    color:#F8F9FA;
     border-radius: 8px;      /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
@@ -91,8 +102,8 @@ form input {
 
 form button {
     padding: 12px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #0DCAF0;
+    color: #1A1A1A;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -101,7 +112,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #45a049; /* Muda a cor quando o botão é hover */
+    background-color: #33D4FF; /* Muda a cor quando o botão é hover */
 }
 
 /* Estilo para a tabela */
@@ -118,16 +129,18 @@ table, th, td {
 th, td {
     padding: 10px;
     text-align: center;
+    
+    background-color: #1A1A1A;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: rgba(51, 212, 255,0.6);
 }
 
 /* Estilo de títulos */
 h1, h2 {
     text-align: center;
-    color: #333;
+    color: #F8F9FA;
 }
 
 /* Estilo para o formulário */
@@ -161,18 +174,19 @@ h1, h2 {
 /* Estilo para o botão de submit */
 button {
     padding: 12px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #0DCAF0;
+    color: #121212;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    font-weight:600;
     width: 100%;              /* Faz o botão ocupar toda a largura disponível */
     margin-top: 15px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #33D4FF;
 }
 
 /* Estilo para as mensagens de alerta de erro ou sucesso */
@@ -190,4 +204,15 @@ button:hover {
 
 .alert-error {
     background-color: #f44336;
+}
+
+ul {
+    list-style-position: inside; /* Mantém as bolinhas, mas dentro da área do texto */
+    text-align: center; /* Centraliza o conteúdo da lista */
+    padding-left: 0; /* Remove o deslocamento padrão da lista */
+}
+#sumario {
+    text-align:center;
+    justify-content:center;
+    margin-bottom: 40px;
 }

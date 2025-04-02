@@ -90,6 +90,11 @@ function validateData(data, keys) {
             alert(`O campo ${key.name} deve ser um texto.`);
             return false;
         }
+
+        if (value == "" || value == null){
+            alert(`O campo ${key.name} não pode ser nulo.`);
+            return false;
+        }
     }
     return true;
 }

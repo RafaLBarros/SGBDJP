@@ -42,6 +42,12 @@ function createTable() {
         alert('O número de tipos não corresponde ao número de chaves!');
         return;
     }
+    for (i = 0;i < types.length; i++) {
+        if(types[i] != "text" && types[i] != "boolean" && types[i] != "number"){
+            alert('Os tipos devem ser text, number ou boolean!');
+            return;
+        }
+    }
 
     // Associa tipos às chaves
     let keyTypes = keys.map((key, index) => ({ key, type: types[index] }));
