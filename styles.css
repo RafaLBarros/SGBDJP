@@ -12,6 +12,7 @@ body {
     background-size: cover;
     background-repeat:no-repeat;
     background-attachment:fixed;
+    overflow-y: auto;
 }
 
 /* Container principal que agrupa os formulários */
@@ -215,4 +216,11 @@ ul {
     text-align:center;
     justify-content:center;
     margin-bottom: 40px;
+}
+.table-container {
+    display:block;
+    max-height: 300px; /* Ajuste a altura conforme necessário */
+    padding-right:2px;
+    overflow-y: auto;
+    width: 100%;
 }
